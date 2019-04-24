@@ -1,18 +1,19 @@
-## Tasks
+**Tasks**
 
-1. Create your application estimate
+1. Create your application estimate using the website: 
+    https://calculator.s3.amazonaws.com/index.html
 2. Share your estimates with a unique URL
 
-## Application Details
+**Application Details**
 
 Region - US East - Virginia
 
-### Route 53
+**Route 53**
 
 - 1 Hosted Zone
 - 1 Million Standard Queries per month
 
-### CloudFront
+**CloudFront**
 
 - Data Transfer Out - 1000 GB/Mo
 - Average Object size - 30KB
@@ -26,7 +27,7 @@ Region - US East - Virginia
     South America - 5%
     Australia - 5%
 
-### S3
+**S3**
 
 - S3 Standard Storage and Requests
     Storage - 100 GB
