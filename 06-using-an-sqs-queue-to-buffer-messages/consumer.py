@@ -15,19 +15,34 @@ def consume_messages():
     response = sqs.receive_message(
         QueueUrl=QUEUE_URL,
         MaxNumberOfMessages=1
-    )
-    message = json.loads(response['body'])
+    )['Messages'][0]
+    reciept_handle = response['ReceiptHandle']
+    message_body = json.loads(
+        response['Body']
+    )[0]
     # Translate the message to the language
     translation = translate.translate_text(
-        Text=message['phrase'],
+        Text=message_body['phrase'],
         SourceLanguageCode='en',
-        TargetLanguageCode=message['lang_code']
+        TargetLanguageCode=message_body['lang_code']
     )
-    print(translation['TranslatedText'])
+    print(
+        'Translated "' + message_body['phrase'] +
+        '" to: "' + translation['TranslatedText'] +
+        '"'
+    )
+    sqs.delete_message(
+        QueueUrl=QUEUE_URL,
+        ReceiptHandle=reciept_handle
+    )
 
 
 i = 0
 while i < 1000:
     i += 1
-    consume_messages()
+    try:
+        consume_messages()
+    except KeyError:
+        print('Ran out of messages in the queue!')
+        i = 1001
     time.sleep(2)

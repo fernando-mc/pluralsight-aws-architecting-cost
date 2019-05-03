@@ -2,6 +2,7 @@ import boto3
 import json
 import random
 import time
+import uuid
 
 from phrase_list import phrases
 
@@ -23,7 +24,8 @@ def send_requests_to_sqs():
     sqs.send_message(
         QueueUrl=QUEUE_URL,
         MessageBody=json_message,
-        MessageGroupId='Translations'
+        MessageGroupId='Translations',
+        MessageDeduplicationId=str(uuid.uuid4())
     )
     print('Message sent to SQS.')
 
