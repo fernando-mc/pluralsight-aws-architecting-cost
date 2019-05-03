@@ -46,3 +46,11 @@ sqs.delete_queue(
     QueueUrl=QUEUE_URL
 )
 ```
+
+
+### Installation Instructions
+
+1. Download and install Python3 from https://www.python.org/
+2. Download and install the AWS CLI - https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+3. Configure the AWS CLI - https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
+4. Install Boto3 - https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html
