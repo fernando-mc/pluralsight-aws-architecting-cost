@@ -41,11 +41,17 @@
             Take action:
                 `Add 1 instances` 
             And then wait:
-                `300` seconds before allowing another scaling activity 
+                `60` seconds before allowing another scaling activity 
         Decrease Group Size
             Add new alarm
             Uncheck "Send a notification to"
             Whenever `Average` is `<=` `45`
+            Rule details:
+                Whenever `Average` of `CPU Utilization` is `<=` `45` percent for at least `1` consecutive period(s) of `1 Minute`
+            Take action:
+                `Remove 1 instances` 
+            And then wait:
+                `60` seconds before allowing another scaling activity 
         Launch the Auto Scaling group
 
 
