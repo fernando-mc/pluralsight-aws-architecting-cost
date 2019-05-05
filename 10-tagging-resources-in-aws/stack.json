@@ -1,0 +1,29 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources" : {
+        "SQSQueue": {
+            "Type" : "AWS::SQS::Queue",
+            "Properties" : {
+                "QueueName" : "UntaggedQueue"
+            }
+        },
+        "DynamoDBTable": {
+            "Type" : "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [{
+                    "AttributeName": "ClientId",
+                    "AttributeType": "S"
+                }],
+                "KeySchema": [{
+                    "AttributeName": "ClientId",
+                    "KeyType": "HASH"
+                }],
+                "ProvisionedThroughput": {
+                  "ReadCapacityUnits": 5,
+                  "WriteCapacityUnits": 5
+                },
+                "TableName" : "UntaggedTable"
+            }
+        }
+    }
+}
