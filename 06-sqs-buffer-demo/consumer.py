@@ -16,7 +16,7 @@ def consume_messages():
         QueueUrl=QUEUE_URL,
         MaxNumberOfMessages=1
     )['Messages'][0]
-    reciept_handle = response['ReceiptHandle']
+    receipt_handle = response['ReceiptHandle']
     message_body = json.loads(
         response['Body']
     )[0]
@@ -33,7 +33,7 @@ def consume_messages():
     )
     sqs.delete_message(
         QueueUrl=QUEUE_URL,
-        ReceiptHandle=reciept_handle
+        ReceiptHandle=receipt_handle
     )
 
 
